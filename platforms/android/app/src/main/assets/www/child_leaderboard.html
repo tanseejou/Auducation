@@ -1,0 +1,385 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Select Sticker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Text+Me+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/glowbutton.css" />
+
+
+
+
+    <!-- Demo styles -->
+    <style>
+        html, body {
+            font-family: Concert One,cursive;
+            position: relative;
+            height:100%;
+            
+        }
+
+        .button1 {
+            height: 30px;
+            color: #570909;
+            border:1px solid;
+            background-color: #bf3b5a;
+            text-shadow: 0px 0px;
+            box-shadow: 1px 1px 1px #570909;
+        }
+
+
+        .title {
+            color: white;
+            text-shadow: 2px 2px #bf3b5a;
+        }
+
+        div{
+            border:0px solid;
+        }
+
+        .threeRankAvatar{
+           width:50%;
+           position:absolute;
+           bottom:0px;
+           left:0px;
+        }
+
+        img{
+            border:0px solid blue;
+        }
+
+        .threeRankSticker{
+            width:30%;
+            height:30%;
+            position:absolute;
+            bottom:0px;
+            left:30%;
+        }
+
+        .threeRankPoint{
+            color:lightyellow;
+            font-family:Concert One, cursive;
+            position:absolute;
+            bottom:0px;
+            right:10%;
+            text-shadow:2px 2px black;
+        }
+
+        h2, h3{
+            font-family:Concert One,cursive;
+            margin-bottom:0px;
+        }
+
+        .col{
+            
+            padding:5px;
+            padding-left:10px;
+        }
+
+        p{
+           
+            margin:0px;
+        }
+
+        .otherRankAvatar{
+            position:absolute;
+
+            height:100%;
+        }
+        .otherRankSticker{
+            position:absolute;
+            bottom:0px;
+            left:25%;
+            height:40%;
+        }
+        .otherRankPoint{
+            text-align:right;
+            position:absolute;
+            right:0px;
+            top:0px;
+        }
+
+        .c{
+            border-radius:30px;
+            margin-bottom:10px;
+            box-shadow: 1px 1px 15px black;
+            text-shadow: 2px 2px black;
+        }
+
+        .yourRank{
+            margin-bottom:20px;
+        }
+        
+    </style>
+</head>
+
+
+<script type="text/javascript">
+
+    var docid;
+
+    function getUserRank(){
+        console.log(docid);
+        var dbref = db.collection("child");
+        dbref.orderBy("Point","desc").get().then(function(query){
+            var count=1;    
+            query.forEach(function(doc){
+                console.log(doc.id);
+                
+                if(doc.id == docid){
+                    document.getElementById("yourRanking").innerHTML = count;
+                    document.getElementById("yourPoint").innerHTML = doc.data().Point;
+                }
+                count++;
+            });
+        })
+    }
+
+    function getTenRank(){
+        var dbref = db.collection("child");
+        dbref.orderBy("Point","desc").limit(10).get().then(function(query){
+            
+            var count=1;
+
+            query.forEach(function(doc){
+                document.getElementById("rank_name_"+count).innerHTML = doc.data().FirstN;
+                document.getElementById("rank_email_"+count).innerHTML = doc.data().Parent;
+                document.getElementById("rank_point_"+count).innerHTML = doc.data().Point;
+                document.getElementById("rank_avatar_"+count).src = "images/avatar/" + doc.data().Avatar;
+                document.getElementById("rank_sticker_"+count).src = "images/sticker/" + doc.data().Sticker;
+                count++;
+            });
+        })
+    }
+
+    function init(){
+        docid = getCookie("childdocid");
+        getTenRank();
+        getUserRank();
+    }
+
+
+    window.onload = function(){
+        init();
+    }
+
+
+</script>
+<body style="padding:10px;background-image:url('img/orange1.jpg'); background-size:cover;">
+    
+    <div class="container-fluid" style="height:100%;">
+        <div class="row">
+            <div class="col">
+                <button class="button1 glow-on-hover" style="margin-bottom:10px;"
+                        onclick="window.location.href='mainpage.html';">
+                    Back
+                </button>
+            </div>
+            <div class="col-6" style="text-align:center;">
+                <h1 class="title">Leaderboard</h1>
+            </div>
+            <div class="col">
+
+            </div>
+
+        </div>
+
+
+        <div class="row yourRank" style="text-align:center;color:lightyellow;text-shadow:2px 2px black;">
+            <div class="col">
+                <br />
+                <h1>YOUR RANKING</h1>
+                <h2>#<span id="yourRanking"></span></h2>
+            </div>
+            <div class="col">
+                <br />
+                <h1>YOUR POINTS</h1>
+                <h2><span id="yourPoint"></span></h2>
+            </div>
+        </div>
+
+        <div class="row c" style="height:75%; font-family:'Text Me One';font-weight:bold;color:lightyellow;text-shadow:2px 2px black;">
+            <div class="col" style="text-align:center;">
+
+                <h2 style="color:gold;">1st <span id="rank_name_1"></span></h2>
+                <p id="rank_email_1"></p>
+                <h4 class="threeRankPoint">
+                    <span id="rank_point_1"></span><br />
+                    POINTS
+                </h4>
+                <img class="threeRankAvatar" id="rank_avatar_1" style="" src="" />
+                <img class="threeRankSticker" id="rank_sticker_1" src="" />
+            </div>
+            <div class="col" style="text-align:center;">
+
+                <h2 style="color:silver;">2nd <span id="rank_name_2"></span></h2>
+                <p id="rank_email_2"></p>
+                <h4 class="threeRankPoint">
+                    <span id="rank_point_2"></span><br />
+                    POINTS
+                </h4>
+                <img class="threeRankAvatar" id="rank_avatar_2" style="" src="" />
+                <img class="threeRankSticker" id="rank_sticker_2" src="" />
+            </div>
+            <div class="col" style="text-align:center;">
+
+                <h2 style="color:brown;">3rd <span id="rank_name_3"></span></h2>
+                <p id="rank_email_3"></p>
+                <h4 class="threeRankPoint">
+                    <span id="rank_point_3"></span><br />
+                    POINTS
+                </h4>
+                <img class="threeRankAvatar" id="rank_avatar_3" style="" src="" />
+                <img class="threeRankSticker" id="rank_sticker_3" src="" />
+            </div>
+        </div>
+
+        <div class="row c" style="margin-top:20px;color:lightyellow;">
+            <div class="col-3 ">
+                <h3>#4</h3>
+            </div>
+            <div class="col-6 ">
+                <h3 id="rank_name_4"></h3>
+                <p id="rank_email_4"></p>
+                <h4 class="otherRankPoint">
+                    <span id="rank_point_4"></span><br />
+                    POINTS
+                </h4>
+            </div>
+            <div class="col-3 ">
+                <img class="otherRankAvatar" id="rank_avatar_4" style="" src="" />
+                <img class="otherRankSticker" id="rank_sticker_4" src="" />
+            </div>
+        </div>
+
+        <div class="row c" style="margin-top:20px;color:lightyellow;">
+            <div class="col-3 ">
+                <h3>#5</h3>
+            </div>
+            <div class="col-6 ">
+                <h3 id="rank_name_5"></h3>
+                <p id="rank_email_5"></p>
+                <h4 class="otherRankPoint">
+                    <span id="rank_point_5"></span><br />
+                    POINTS
+                </h4>
+            </div>
+            <div class="col-3 ">
+                <img class="otherRankAvatar" id="rank_avatar_5" style="" src="" />
+                <img class="otherRankSticker" id="rank_sticker_5" src="" />
+            </div>
+        </div>
+
+        <div class="row c" style="margin-top:20px;color:lightyellow;">
+            <div class="col-3 ">
+                <h3>#6</h3>
+            </div>
+            <div class="col-6 ">
+                <h3 id="rank_name_6"></h3>
+                <p id="rank_email_6"></p>
+                <h4 class="otherRankPoint">
+                    <span id="rank_point_6"></span><br />
+                    POINTS
+                </h4>
+            </div>
+            <div class="col-3 ">
+                <img class="otherRankAvatar" id="rank_avatar_6" style="" src="" />
+                <img class="otherRankSticker" id="rank_sticker_6" src="" />
+            </div>
+        </div>
+
+        <div class="row c" style="margin-top:20px;color:lightyellow;">
+            <div class="col-3 ">
+                <h3>#7</h3>
+            </div>
+            <div class="col-6 ">
+                <h3 id="rank_name_7"></h3>
+                <p id="rank_email_7"></p>
+                <h4 class="otherRankPoint">
+                    <span id="rank_point_7"></span><br />
+                    POINTS
+                </h4>
+            </div>
+            <div class="col-3 ">
+                <img class="otherRankAvatar" id="rank_avatar_7" style="" src="" />
+                <img class="otherRankSticker" id="rank_sticker_7" src="" />
+            </div>
+        </div>
+
+        <div class="row c" style="margin-top:20px;color:lightyellow;">
+            <div class="col-3 ">
+                <h3>#8</h3>
+            </div>
+            <div class="col-6 ">
+                <h3 id="rank_name_8"></h3>
+                <p id="rank_email_8"></p>
+                <h4 class="otherRankPoint">
+                    <span id="rank_point_8"></span><br />
+                    POINTS
+                </h4>
+            </div>
+            <div class="col-3 ">
+                <img class="otherRankAvatar" id="rank_avatar_8" style="" src="" />
+                <img class="otherRankSticker" id="rank_sticker_8" src="" />
+            </div>
+        </div>
+
+        <div class="row c" style="margin-top:20px;color:lightyellow;">
+            <div class="col-3 ">
+                <h3>#9</h3>
+            </div>
+            <div class="col-6 ">
+                <h3 id="rank_name_9"></h3>
+                <p id="rank_email_9"></p>
+                <h4 class="otherRankPoint">
+                    <span id="rank_point_9"></span><br />
+                    POINTS
+                </h4>
+            </div>
+            <div class="col-3 ">
+                <img class="otherRankAvatar" id="rank_avatar_9" style="" src="" />
+                <img class="otherRankSticker" id="rank_sticker_9" src="" />
+            </div>
+        </div>
+
+        <div class="row c" style="margin-top:20px;color:lightyellow;">
+            <div class="col-3 ">
+                <h3>#10</h3>
+            </div>
+            <div class="col-6 ">
+                <h3 id="rank_name_10"></h3>
+                <p id="rank_email_10"></p>
+                <h4 class="otherRankPoint">
+                    <span id="rank_point_10"></span><br />
+                    POINTS
+                </h4>
+            </div>
+            <div class="col-3 ">
+                <img class="otherRankAvatar" id="rank_avatar_10" style="" src="" />
+                <img class="otherRankSticker" id="rank_sticker_10" src="" />
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/js/swiper.js"></script>
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+    <script src="js/Firebase/initFirebase.js"></script>
+    <script type="text/javascript" src="js/cookie/cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+
+  <title>math1</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="math1_style.css">
+
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+
+  <script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
+  <script type="text/javascript">
+    var correctCards = 0;
+    $(init);
+
+    function init() {
+      // Hide the success message
+      $('#successMessage').hide();
+      $('#successMessage').css({
+        left: '580px',
+        top: '250px',
+        width: 0,
+        height: 0
+      });
+      // Reset the game
+      correctCards = 0;
+      $('#cardPile').html('');
+      $('#cardSlots').html('');
+      // Create the pile of shuffled cards
+      var image = new Array();
+      image[0] = new Image();
+      image[0].src = 'images/numbers/1.png';
+
+      image[1] = new Image();
+      image[1].src = 'images/numbers/2.png';
+
+      image[2] = new Image();
+      image[2].src = 'images/numbers/3.png';
+
+      image[3] = new Image();
+      image[3].src = 'images/numbers/4.png';
+
+
+      var numbers = [1, 2, 3, 4];
+
+
+      var tracker = image.length, temp, temp2, index;
+      while (tracker > 0) {
+        index = Math.floor(Math.random() * tracker);
+        tracker --;
+        temp = image[tracker];
+        temp2 = numbers[tracker];
+        image[tracker] = image[index];
+        image[index] = temp;
+        numbers[tracker] = numbers[index];
+        numbers[index] = temp2;
+      }
+
+      for (var i = 0; i < 4; i++) {
+        $('<div>' + '<img src="' + image[i].src + '"></div>').data('number', numbers[i]).attr('id', 'card' + numbers[i]).appendTo('#cardPile').draggable({
+          stack: '#cardPile div',
+          cursor: 'move',
+          revert: true
+        });
+
+       console.log($(this).data('number'))
+      }
+      // Create the card slots
+      var words = ['one', 'two', 'three','four'];
+      for (var i = 1; i <= 4; i++) {
+        $('<div>' + words[i - 1] + '</div>').data('number', i).appendTo('#cardSlots').droppable({
+          accept: '#cardPile div',
+          hoverClass: 'hovered',
+          drop: handleCardDrop
+        });
+      }
+    }
+
+    function randomize(){
+
+    }
+
+    function handleCardDrop(event, ui) {
+      var slotNumber = $(this).data('number');
+      var cardNumber = ui.draggable.data('number');
+
+
+      console.log(slotNumber);
+            console.log(cardNumber);
+      // If the card was dropped to the correct slot,
+      // change the card colour, position it directly
+      // on top of the slot, and prevent it being dragged
+      // again
+      if (slotNumber == cardNumber) {
+        ui.draggable.addClass('correct');
+        ui.draggable.draggable('disable');
+        $(this).droppable('disable');
+        ui.draggable.position({ of: $(this),
+          my: 'left top',
+          at: 'left top'
+        });
+        ui.draggable.draggable('option', 'revert', false);
+        correctCards++;
+      }
+      // If all the cards have been placed correctly then display a message
+      // and reset the cards for another go
+      if (correctCards == 4) {
+        $('#successMessage').show();
+        $('#successMessage').animate({
+          left: '380px',
+          top: '200px',
+          width: '400px',
+          height: '100px',
+          opacity: 1
+        });
+      }
+    }
+  </script>
+
+</head>
+
+<body>
+  <div id="content">
+    <div id="cardSlots"> </div>
+    <div id="cardPile"> </div>
+
+
+    <div id="successMessage">
+      <h2>Congratulations!</h2>
+      <button onclick="init()">Play Again</button>
+    </div>
+
+  </div>
+
+
+</body>
+
+</html>

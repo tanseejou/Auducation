@@ -1,0 +1,135 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+
+    <title>Odd One Out Practice1</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Puzzle.css">
+    <link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Text+Me+One&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript"></script>
+    
+    <script type="text/javascript">
+        //Image Array
+        var random_images_array=["lemonGroup1.png", "kidGroup.png", "chickGroup.png", "penguinGroup2.png"];
+        
+        var num=Math.floor(Math.random()*random_images_array.length); // 0  1  2  
+        //called to display the random image
+        function getRandomImage(path){
+            path=path||'img/';
+            console.log(num);
+            var img=random_images_array[num];
+            var imgStr='<img src="'+path+img+'" alt="" class="questionImg">';
+            document.write(imgStr);
+            
+            document.close(); 
+        }
+    </script>
+
+
+</head>
+<script>
+    function recordLesson(){
+        setEnd();
+        record(false,"Number1.html");
+        resetCookie();
+    }
+  
+
+    function init(){
+        document.getElementById("backHome").addEventListener('click',recordLesson);
+
+    }
+
+    window.onload = function(){
+
+        initialize();
+        init();
+    }
+</script>
+<body>
+    <div class="container-fluid imgBackground">
+        <div class="row align-items-end">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10"></div>
+            <div class="col d-flex justify-content-end">
+                <button type="button" id="backHome" class="congBtn p-2">
+                    <i class="fa fa-home fa-2x" aria-hidden="true" ></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="translucentBg">
+                    <p style="margin: 2px; font-size: 20px;" class="instruction">Pick the odd one</p>
+                  
+                    <div class="row justify-content-center">
+                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" >
+                            <script>getRandomImage()</script>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
+                            <button type="button" class="ansBtn btn-sm btn-block" style="margin-top: 10px;margin-bottom: 10px; font-size: 13px;"
+                                id="btn_0">Pick me</button>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
+                            <button type="button" class="ansBtn btn-sm btn-block" style="margin-top: 10px;margin-bottom: 10px;font-size: 13px;"
+                                id="btn_1">Hmm</button>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
+                            <button type="button" class="ansBtn btn-sm btn-block" style="margin-top: 10px;margin-bottom: 10px;font-size: 13px;"
+                                id="btn_2">Not me</button>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
+                            <button type="button" class="ansBtn btn-sm btn-block" style="margin-top: 10px;margin-bottom: 10px;font-size: 13px;"
+                                id="btn_3">Hi</button>
+                        </div>
+                    </div>
+                     
+                    <div class="row" >
+                        <p id=errorMsg class="errorMessage"></p>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>  
+        num=2;
+        document.getElementById("btn_"+num).onclick=function(){window.location.href='OddOneOut2.html';};
+
+        var i;
+        for(i=0; i<4; i++)
+        {
+            if(i!=num)
+            {
+                document.getElementById("btn_"+i).onclick=function()
+                {document.getElementById("errorMsg").innerHTML="TRY AGAIN, YOU CAN DO IT";}
+            }
+        }
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+    <script src="js/Firebase/initFirebase.js"></script>
+    <script type="text/javascript" src="js/cookie/cookie.js"></script>
+    <script type="text/javascript" src="js/playCalc.js"></script>
+
+
+</body>
+
+</html>
+
+

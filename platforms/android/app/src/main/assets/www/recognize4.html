@@ -1,0 +1,119 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+
+    <title>Emotions Practice4</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Emotion.css">
+    <link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Text+Me+One&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript"></script>
+
+</head>
+<script type="text/javascript">
+
+    function recordLesson(){
+        setEnd();
+        record(false,"Emotion1.html");
+        resetCookie();
+    }
+
+    function recordWin(){
+        console.log("ha");
+        setEnd();
+        record(true,"EmotionCongratulation.html");
+        resetCookie();
+    }
+
+    function init(){
+        document.getElementById("backHome").addEventListener('click',recordLesson);
+        document.getElementById("win-btn").addEventListener('click',recordWin);
+        console.log("hello");
+    }
+
+    window.onload = function(){
+        console.log("helllooo");
+        initialize();
+        init();
+    }
+</script>
+<body>
+    <div class="container-fluid imgBackground2">
+        <div class="row align-items-end">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10"></div>
+            <div class="col d-flex justify-content-end">
+                <button type="button" id="backHome" class="congBtn">
+                    <i class="fa fa-home fa-2x" aria-hidden="true" ></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="translucentBg">
+                    <span style="padding-left:5px; font-size: 14px;" class="instruction">MATCH THE CORRECT EMOTION TO THE SITUATION 
+                        <br>SITUATION: NOW IS WINTER AND YOU ARE WEARNIG WINTER COAT AS YOU FEEL <i class="fa fa-question-circle" aria-hidden="true"></i>
+                    </span>
+                    <div class="row justify-content-center">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
+                            <img src="img/hotImg.png" alt="hotImage" class="questionImg center">
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
+                            <img src="img/coldImg.png" alt="coldImage" class="questionImg center">
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
+                            <img src="img/angryImg.png" alt="angryImage" class="questionImg center">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center" style="padding: 0px 5px 5px 5px">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <button type="button" class="ansBtn btn-sm btn-block" 
+                             onclick="error()">HOT</button>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <button type="button" class="ansBtn btn-sm btn-block" 
+                             id="win-btn">COLD</button>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <button type="button" class="ansBtn btn-sm btn-block" 
+                             onclick="error()">ANGRY</button>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <p id=errmsg class="errorMessage"></p>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>
+
+    <script>  
+        document.getElementById("btn_"+num).onclick=function(){window.location.href='recognize3.html';};
+
+        
+        function error() {
+            document.getElementById("errmsg").innerHTML = "TRY AGAIN, YOU CAN DO IT";
+        }
+  
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+    <script src="js/Firebase/initFirebase.js"></script>
+    <script type="text/javascript" src="js/cookie/cookie.js"></script>
+    <script type="text/javascript" src="js/playCalc.js"></script>
+
+</body>
+
+</html>
+
+

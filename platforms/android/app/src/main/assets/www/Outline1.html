@@ -1,0 +1,109 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+
+    <title>Advance Counting Practice1</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Puzzle.css">
+    <link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Text+Me+One&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript"></script>
+
+
+
+</head>
+<script type="text/javascript">
+    function recordLesson(){
+        setEnd();
+        record(false,"Puzzle1.html");
+        resetCookie();
+    }
+  
+
+    function init(){
+        document.getElementById("backHome").addEventListener('click',recordLesson);
+
+    }
+
+    window.onload = function(){
+
+        initialize();
+        init();
+    }
+</script>
+
+<body>
+    <div class="container-fluid imgBackground">
+        <div class="row align-items-end">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10"></div>
+            <div class="col d-flex justify-content-end">
+                <button type="button" class="congBtn p-2" id="backHome">
+                    <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="translucentBg">
+                    <p style="margin-left: 2px; margin-bottom:0px; font-size: 20px; padding: 0;" class="instruction">Find it out</p>
+
+                    <div class="row justify-content-center">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4  ">
+                            <img src="img/pikachu1_black.png" class="questionImg" >
+                        </div>
+                    
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" align="center">
+                            <button class="ansBtn btn-sm btn-block" id="btn_0"><img class="questionImg" src="img/pikachu1.png" ></button>
+                        
+                            <button class="ansBtn btn-sm btn-block" id="btn_1"><img class="questionImg" src="img/pikachu2.png" ></button>
+                        
+                            <button class="ansBtn btn-sm btn-block" id="btn_2"><img class="questionImg" src="img/pikachu3.png"></button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <p id=errorMsg class="errorMessage"></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>  
+        var num=0;
+        document.getElementById("btn_"+num).onclick=function(){window.location.href='Outline2.html';};
+
+        var i;
+        for(i=0; i<3; i++)
+        {
+            if(i!=num)
+            {
+                document.getElementById("btn_"+i).onclick=function()
+                {document.getElementById("errorMsg").innerHTML="TRY AGAIN, YOU CAN DO IT";}
+            }
+        }
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+    <script src="js/Firebase/initFirebase.js"></script>
+    <script type="text/javascript" src="js/cookie/cookie.js"></script>
+    <script type="text/javascript" src="js/playCalc.js"></script>
+
+</body>
+
+</html>
+
+

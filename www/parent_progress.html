@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Parent</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Text+Me+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/parent.css" />
+    <link rel="stylesheet" type="text/css" href="css/parent_progress.css" />
+
+</head>
+
+<style>
+    html, body, .viewport {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      }
+
+
+    .d{
+        width: 80%;
+        margin-left:auto;
+        margin-right:auto;
+        margin-bottom:20px;
+    }
+
+    .c {
+        max-height: 60px;
+        border-radius: 10px;
+        text-align: center;
+        overflow:hidden;
+        box-shadow: 0px 8px 20px -10px rgba(13,28,39,0.6);
+    }
+
+    .card-title {
+        
+        font-family: Concert One, cursive;
+        font-weight: bold;
+    }
+
+    .card-text {
+        font-weight: bold;
+    }
+
+    .card{
+        transition: max-height 0.3s ease-in-out;
+    }
+
+    .card:hover{
+        max-height:180px;
+       
+    }
+    
+</style>
+
+<!-- JAVASCRIPT -->
+<script type="text/javascript">
+
+    
+</script>
+
+
+<body style="font-family:'Text Me One', cursive; background-image: url('images/parent_background.jpg');background-size: cover; ">
+    <div class="container-fluid ">
+        <div class="row headerrow" style="padding-top:10px">
+            <div class="col">
+                <h2 style="color: white;font-family:Concert One,cursive;">Progress</h2>
+            </div>
+            <div class="col">
+                <a href="mainpage.html">
+                    <button class="btn-child draw-border float-right">Switch to Child</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="margin-top:20px;overflow:scroll;">
+        <div class="row d">
+            
+
+            <div class="col colc">
+                <div class="card c">
+                    <div class="card-body">
+                        <h3 class="card-title">Number</h3>
+                        <h4 class="card-title">
+                            <span id="prog-m"></span>
+                            <span> / 3</span>
+                        </h4>
+                        <div class="card-text">
+                            Complete
+                        </div>
+                        <a id="detail_2" class="btn-child draw-border" href="#popup2">Detail</a>
+                    </div>
+
+                </div>
+            </div>
+        
+        
+            <div class="col">
+                <div class="card c">
+                    <div class="card-body">
+                        <h3 class="card-title">Puzzle</h3>
+                        <h4 class="card-title">
+                            <span id="prog-p"></span>
+                            <span> / 3</span>
+                        </h4>
+                        <div class="card-text">
+                            Complete
+                        </div>
+                        <a id="detail_3" class="btn-child draw-border" href="#popup3">Detail</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card c">
+                    <div class="card-body">
+                        <h3 class="card-title">Emotion</h3>
+                        <h4 class="card-title">
+                            <span id="prog-e"></span>
+                            <span> / 1</span>
+                        </h4>
+                        <div class="card-text">
+                            Complete
+                        </div>
+                        <a id="detail_5" class="btn-child draw-border" href="#popup5">Detail</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="popup2" class="overlay">
+                <div class="popup">
+                    <h2>Numbers</h2>
+                    <a class="close" href="#">X</a>
+                    <div class="content">
+                        <table style="border-radius:10px; width:100%;">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Lesson</th>
+                                    <th scope="col">Last Attempt</th>
+                                    <th scope="col">Total Mins</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pop-math">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="popup3" class="overlay">
+                <div class="popup">
+                    <h2>Puzzle</h2>
+                    <a class="close" href="#">X</a>
+                    <div class="content">
+                        <table style="border-radius:10px; width:100%;">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Lesson</th>
+                                    <th scope="col">Last Attempt</th>
+                                    <th scope="col">Total Mins</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pop-puzzle">
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="popup5" class="overlay">
+                <div class="popup">
+                    <h2>Emotion</h2>
+                    <a class="close" href="#">X</a>
+                    <div class="content">
+                        <table style="border-radius:10px; width:100%;">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Lesson</th>
+                                    <th scope="col">Last Attempt</th>
+                                    <th scope="col">Total Mins</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pop-emotion">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        
+       
+
+        <div class="thebar" style="font-family: Concert One, cursive;">
+            <div class="thebar-show">
+                <a href="#" class="float-right" style="margin-right:10px;">Menu<a>
+                <br />
+            </div>
+            <div>
+                <nav class="roundnav">
+                    <a href="parent_mychild.html">My Child</a>
+                    <a href="#"  class="selected">Progress</a>
+                    <a href="parent_setting.html"parent_setting.html">Setting</a>
+                </nav>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPT -->
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+    <script src="js/Firebase/initFirebase.js"></script>
+    <script type="text/javascript" src="js/cookie/cookie.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/Firebase/parent_progress.js"></script>
+
+    <script>
+        $(function(){
+
+            var menu = $('.roundnav');
+            menu.on('click', 'a', function(){
+            var a = $(this);
+
+            a.siblings().removeClass('selected');
+            a.addClass('selected');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, shrink-to-fit=no">
+    <title>MainPage</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Text+Me+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/glowbutton.css" />
+
+</head>
+
+<script type="text/javascript">
+
+    var avatarsrc;
+    var docid;
+
+    function onAuthChange(){
+        firebase.auth().onAuthStateChanged(function(user) {
+            if(user){
+            }
+            else{
+                deleteCookie("email");
+                deleteCookie("uid");
+                deleteCookie("childname");
+                deleteCookie("childage");
+                deleteCookie("childdocid");
+
+                location.replace("index.html");
+            }
+        });
+    }
+    function signout(){
+        firebase.auth().signOut();
+        
+    }
+
+    function init(){
+
+        docid = getCookie("childdocid");    
+        var chidlName;
+        var point;
+        var stickersrc;
+        var dGetA = db.collection("child").doc(docid);
+        dGetA.get().then(function(doc){
+            childName = doc.data().FirstN;
+            avatarsrc = doc.data().Avatar;    
+            point = doc.data().Point;      
+            stickersrc = doc.data().Sticker;
+            
+            document.getElementById("childPoint").innerHTML = point;
+            document.getElementById("childName").innerHTML = childName;
+            document.getElementById("avatarsrc").src = "images/avatar/" + avatarsrc; 
+            document.getElementById("stickersrc").src = "images/sticker/" + stickersrc; 
+        })
+        document.getElementById("signOut-btn").addEventListener('click',signout);
+        onAuthChange();
+    }
+
+    window.onload = function(){
+        init();
+    }
+</script> 
+
+<style>
+    html,body{
+        height:100%;
+    }
+
+    .play-btn{
+        font-size: 50px;
+        position:absolute;
+        left:50%;
+        bottom:0;
+        margin-left: -25%;
+    }
+
+    .badge-btn {
+        border:0px;
+        box-shadow:0px 0px;
+        font-size:20px;
+        position:absolute;
+        bottom:0;
+        right:20px;
+    }
+
+   .leaderboard-btn {
+       
+        border:0px;
+        font-size:20px;
+        box-shadow:0px 0px;
+        position:absolute;
+        bottom:0;
+    }
+
+   .badge_img{
+       width:30%;height:30%;
+       position:absolute;
+        bottom:30px;
+        right:20px;
+   }
+
+   .leaderboard_img{
+       width:40%;height:30%;
+       position:absolute;
+       left:10px;
+        bottom:30px;
+        
+   }
+
+   .signOut-btn{
+       height:30px;
+       color:#570909;
+       border:0px;
+       background-color: #bf3b5a;
+       text-shadow: 0px 0px;
+       box-shadow: 1px 1px 1px #570909;
+   }
+
+   .switchToParent-btn{
+       height:30px;
+       color:#440029;
+       border:0px;
+       background-color:#85435e;
+       text-shadow: 0px 0px;
+       box-shadow: 1px 1px 1px #440029;
+   }
+
+   .childPoint{
+       font-size:20px;
+       color: #fbc78b;
+       text-shadow: 2px 2px black;
+   }
+
+   #childName{
+       color:#ffdf9f;
+       text-shadow: 2px 2px black;
+   }
+
+   #avatarsrc{
+       width:70%;
+       height:70%;
+       transition: transform .1s ease-in-out;
+       
+   }
+   #avatarsrc:active{
+      transform:scale(0.8,0.8);
+       
+   }
+
+   #stickersrc{
+       position:absolute;
+       bottom:25%;
+       right:5%;    
+       height:30%;
+   }
+
+
+
+
+</style>
+
+<body style="background-image:url('img/orange1.jpg'); background-size:cover; font-family:Concert One, cursive;">
+    <div class="container-fluid" style="height:95%;" >
+        <!--HEADER-->
+        <div class="row" style="padding-top:10px;">
+            <div class="col">
+                <button class="glow-on-hover signOut-btn" id="signOut-btn">Sign Out</button>
+            </div>
+            <div class="col childPoint" style="text-align:center;">
+                <span id="childName" style="font-size:130%;"></span>
+                &nbsp
+                <span id="childPoint"></span> points
+
+            </div>
+            <div class="col">
+                <button class="glow-on-hover float-right switchToParent-btn"  
+                        onclick="window.location.href = 'parent_mychild.html';">
+                    Switch to Parent
+                </button>
+            </div>
+        </div>
+        <div class="row" style="height:90%;">
+            <!--Sticker-->
+            <div class="col">
+                <div class="row" style="height:90%;">
+                    <div class="col" style="padding-right:0px;">
+                        <img src="images/sticker/sticker_1.png" class="badge_img" />
+                        <button class="glow-on-hover badge-btn"  
+                                onclick="window.location.href = 'child_sticker.html';">
+                            STICKER
+                        </button>
+                    </div>
+                    
+                </div>
+                <div class="row" style="height:10%;">
+                    
+                </div>
+            </div>
+
+            <!-- MAIN PLAY COLUMN-->
+            <div class="col" style="text-align:center; font-family:Concert One,cursive">
+                
+                <img id="stickersrc" src="" />
+                <a id="avatar-btn" href="child_avatar.html"><img id="avatarsrc" src=""/></a>
+                
+                <button class="glow-on-hover play-btn" style="height:auto;width:auto;" 
+                        onclick="window.location.href = 'lessonSelect.html';">
+                    PLAY
+                </button>
+            </div>
+
+
+            <!-- LEADERBOARD-->
+            <div class="col">
+                <div class="row" style="height:90%;">
+                    <div class="col" style="padding-left:0px;">
+                        <img src="img/leaderboard_menu.png" class="leaderboard_img" />
+                        <button class="glow-on-hover leaderboard-btn"
+                                 onclick="window.location.href = 'child_leaderboard.html';">
+                            LEADERBOARD
+                        </button>
+                    </div>
+
+                </div>
+                <div class="row" style="height:10%;">
+
+                </div>
+                
+            </div>
+            
+        </div>
+        <!--<div class="row" style="height:10%;">
+            <div class="col">
+
+            </div>
+            <div class="col" style="text-align:center; ">
+                
+            </div>
+            <div class="col">
+
+            </div>
+        </div>-->
+    </div>
+    
+
+    
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+<script src="js/Firebase/initFirebase.js"></script>
+<script type="text/javascript" src="js/cookie/cookie.js"></script>
+
+
+</html>

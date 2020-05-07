@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Select Sticker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Text+Me+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/glowbutton.css" />
+
+
+
+
+    <!-- Demo styles -->
+    <style>
+        html, body {
+            font-family: Concert One,cursive;
+            position: relative;
+            height: 100%;
+        }
+
+        .button1 {
+            height: 30px;
+            color: #570909;
+            border: 0px;
+            background-color: #bf3b5a;
+            text-shadow: 0px 0px;
+            box-shadow: 1px 1px 1px #570909;
+        }
+
+
+        .swiper-container {
+            margin-top: 5%;
+
+        }
+
+        .swiper-slide {
+            text-align: center;
+            height: 80%;
+            font-size: 18px;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            margin-bottom:5%;
+        }
+
+        .swiper-text{
+            position:absolute;
+            bottom:0;
+        }
+
+        .swiper-pagination{
+            position:absolute;
+            bottom:0;
+        }
+
+
+        img {
+
+            width: 100%;
+            height: 100%;
+            margin-bottom: 20%;
+            transition: 0.1s ease-in-out;
+        }
+
+        img:active {
+            transform: scale(0.9,0.9);
+        }
+
+        .title {
+            color: white;
+            text-shadow: 2px 2px #bf3b5a;
+        }
+
+   
+    </style>
+</head>
+
+
+<script type="text/javascript">
+
+    var docid;
+
+   
+
+    function changeSticker(id){
+        if(id=='d0'){
+            ref = "images/sticker/none.png";
+        }
+        else{
+             var src = document.getElementById(id).src;
+            var pos = src.search("sticker/");
+             var ref = src.substr(pos+8);
+        }
+       
+
+        db.collection("child").doc(docid).update({
+            Sticker: ref
+        }).then(function(e){
+            console.log("fasd");
+            window.location.href="mainpage.html";
+        });
+    }
+
+    function findUnlock(){
+
+        var point;
+        var totalM;
+
+        dref = db.collection("child").doc(docid);
+
+        dref.get().then(function(doc){
+            point = doc.data().Point;
+            totalM = doc.data().TotalM;
+
+            if(totalM >= 1){
+                document.getElementById('d2').src = "images/sticker/sticker_2.png";              
+                document.getElementById('d2').addEventListener('click',function(){
+                    changeSticker('d2');
+                });
+            }
+            if(totalM >= 20){
+                document.getElementById('d3').src = "images/sticker/sticker_3.png";              
+                document.getElementById('d3').addEventListener('click',function(){
+                    changeSticker('d3');
+                });
+            }
+            if(totalM >= 60){
+                document.getElementById('d4').src = "images/sticker/sticker_4.png";              
+                document.getElementById('d4').addEventListener('click',function(){
+                    changeSticker('d4');
+                });
+            }
+            if(point >= 50){
+                document.getElementById('d5').src = "images/sticker/sticker_5.png";              
+                document.getElementById('d5').addEventListener('click',function(){
+                    changeSticker('d5');
+                });
+            }
+            if(point >= 100){
+                document.getElementById('d6').src = "images/sticker/sticker_6.png";              
+                document.getElementById('d6').addEventListener('click',function(){
+                    changeSticker('d6');
+                });
+            }
+            if(point >= 1000){
+                document.getElementById('d7').src = "images/sticker/sticker_7.png";              
+                document.getElementById('d7').addEventListener('click',function(){
+                    changeSticker('d7');
+                });
+            }
+            if(point >= 10000){
+                document.getElementById('d8').src = "images/sticker/sticker_10.png";              
+                document.getElementById('d8').addEventListener('click',function(){
+                    changeSticker('d8');
+                });
+            }
+            if(totalM >= 3600){
+                document.getElementById('d9').src = "images/sticker/sticker_11.png";              
+                document.getElementById('d9').addEventListener('click',function(){
+                    changeSticker('d9');
+                });
+            }
+        });
+    
+    }
+
+    function init(){
+        docid = getCookie("childdocid");
+        findUnlock();
+    }
+
+
+    window.onload = function(){
+        init();
+    }
+</script>
+<body style="padding:10px;background-image:url('img/orange1.jpg'); background-size:cover;">
+    <!-- Swiper -->
+    <div class="container-fluid" style="height:100%;">
+        <div class="row">
+            <div class="col">
+                <button class="button1 glow-on-hover" style="margin-bottom:10px;"
+                        onclick="window.location.href='mainpage.html';">
+                    Back
+                </button>
+            </div>
+            <div class="col-6" style="text-align:center;">
+                <h1 class="title">Select Sticker</h1>
+            </div>
+            <div class="col">
+
+            </div>
+
+        </div>
+        <div class="row" style="height:85%;">
+            <div class="col" >
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img id="d0" onclick="changeSticker('d0');" src="images/sticker/none.png" />
+                            <div class="swiper-text"> Set to none</div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img id="d1" onclick="changeSticker('d1');" src="images/sticker/sticker_1.png" />
+                            <div class="swiper-text"> Your first sticker </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img id="d2" src="images/sticker/lock.png" />
+                            <div class="swiper-text"> Getting started </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img id="d3" src="images/sticker/lock.png" />
+                            <div class="swiper-text"> Play more than 20 mins </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img id="d4" src="images/sticker/lock.png" />
+                            <div class="swiper-text"> Play more than 60 mins </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img id="d5" src="images/sticker/lock.png" />
+                            <div class="swiper-text"> Earn more than 50 point </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img id="d6" src="images/sticker/lock.png" />
+                            <div class="swiper-text"> Earn more than 100 point </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img id="d7" src="images/sticker/lock.png" />
+                            <div class="swiper-text"> Earn more than 1000 point </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img id="d8" src="images/sticker/lock.png" />
+                            <div class="swiper-text"> Earn more than 10000 point </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img id="d9" src="images/sticker/lock.png" />
+                            <div class="swiper-text"> Play more than 3600 mins </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img id="d10" src="images/sticker/lock.png" />
+                        </div>
+                    </div>
+
+
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/js/swiper.js"></script>
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 4,
+        centeredSlides: true,
+        spaceBetween: 30,
+        grabCursor: true,
+        pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        },
+        });
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+    <script src="js/Firebase/initFirebase.js"></script>
+    <script type="text/javascript" src="js/cookie/cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+</body>
+</html>

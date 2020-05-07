@@ -1,0 +1,124 @@
+<!--CHILD SIGNUP
+-->
+
+
+<html>
+<head>
+    <!--
+    Customize this policy to fit your own app's needs. For more guidance, see:
+        https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+    Some notes:
+        * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+        * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+        * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+            * Enable inline JS: add 'unsafe-inline' to default-src
+    -->
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--===============================================================================================-->
+    <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Text+Me+One&display=swap" rel="stylesheet">
+
+
+    <title>Signup AuDucation</title>
+</head>
+    <body>
+
+        <div class="container-login100" style="font-family:Concert One,cursive;">
+            <div class="wrap-login100">
+                
+
+                <div class="row">
+                    <div class="col">
+
+                        <div class="wrap-input100">
+                            <input id="childNameF" class="input100" type="text" name="childNameF" placeholder="Child's First Name">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <div class="wrap-input100">
+                            <input id="childNameL" class="input100" type="text" name="childNameL" placeholder="Child's Last Name">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100">
+                            <input id="childAge" class="input100" type="text" name="childAge" placeholder="Child's Age">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100">
+                            <select id="childGender" class="input100" name="childGender">
+                                Gender:
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <span class="focus-input100"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h1>
+                            Child's Info
+                        </h1>
+                        <br />
+                        <br />
+
+                        <div class="container-login100-form-btn">
+                            <button id="addchild-button" class="login100-form-btn">
+                                Add Child
+                            </button>
+                        </div>
+
+                        <div class="text-center">
+                            <a id="signout-btn" href="index.html" class="txt2 hov1">
+                                Sign Out
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+
+
+                
+            </div>
+
+            <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+            <script src="js/Firebase/initFirebase.js"></script>
+
+            <script type="text/javascript" src="cordova.js"></script>
+            <script type="text/javascript" src="js/jquery.min.js"></script>
+            <script type="text/javascript" src="js/addchild.js"></script>
+            <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+            <!--===============================================================================================-->
+            <script src="vendor/animsition/js/animsition.min.js"></script>
+            <!--===============================================================================================-->
+            <script src="vendor/bootstrap/js/popper.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+            <!--===============================================================================================-->
+            <script src="vendor/select2/select2.min.js"></script>
+            <!--===============================================================================================-->
+            <script src="vendor/daterangepicker/moment.min.js"></script>
+            <script src="vendor/daterangepicker/daterangepicker.js"></script>
+            <!--===============================================================================================-->
+            <script src="vendor/countdowntime/countdowntime.js"></script>
+
+
+
+</body>
+</html>

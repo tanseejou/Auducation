@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, shrink-to-fit=no">
+    <title>Parent</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Text+Me+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/parent.css" />
+    <link rel="stylesheet" type="text/css" href="css/parent_progress.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<style>
+    html, body{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    .logout-btn{
+
+        box-shadow: inset 0 0 0 2px #732c1f;
+	    color: #732c1f;
+        
+    }
+
+    .btn-child{
+        margin-bottom:10px;
+    }
+</style>
+
+<!-- JAVASCRIPT -->
+<script type="text/javascript">
+    var docid;
+
+    function onAuthChange(){
+        firebase.auth().onAuthStateChanged(function(user) {
+            if(user){
+                document.getElementById('profName').innerHTML = user.displayName;
+                document.getElementById('profEmail').innerHTML = user.email;
+                document.getElementById('childNameF').value = getCookie("childname");
+                document.getElementById('childNameL').value = getCookie("childnameL");
+                document.getElementById('childAge').value = getCookie("childage");
+            }
+            else{
+                deleteCookie("email");
+                deleteCookie("uid");
+                deleteCookie("childname");
+                deleteCookie("childnameL");
+                deleteCookie("childage");
+                deleteCookie("childdocid");
+
+                window.location.href = "index.html";
+            }
+        });
+    }
+
+    function updateChild(){
+        var fN = document.getElementById("childNameF").value;
+        var lN = document.getElementById("childNameL").value;
+        var childAge = document.getElementById("childAge").value;
+
+
+
+        dbref = db.collection("child").doc(docid);
+        dbref.update({
+            FirstN: fN,
+            LastN: lN,
+            Age: childAge
+        }).then(function(){
+            alert("Updated Successfully.");
+             document.cookie = "childname=" + fN;
+             document.cookie = "childnameL=" + lN;
+             document.cookie = "childage=" + childAge;
+
+            document.getElementById('childNameF').value = getCookie("childname");
+            document.getElementById('childNameL').value = getCookie("childnameL");
+            document.getElementById('childAge').value = getCookie("childage");
+        });
+
+       
+    }
+
+
+    function signout(){
+        firebase.auth().signOut();
+        
+    }
+
+    function init(){
+        docid = getCookie("childdocid");
+        document.getElementById("logout-btn").addEventListener('click',signout);
+        document.getElementById("updateChild").addEventListener('click',updateChild);
+        onAuthChange();
+    }
+
+    window.onload = function(){
+        init();
+    }
+
+</script>
+
+
+<body style="font-family:'Text Me One', cursive; background-image: url('images/parent_background.jpg');background-size: cover; ">
+    <div class="container-fluid" style="height:100%;">
+        <div class="row headerrow" style="padding-top:10px">
+            <div class="col">
+                <h2 style="color: white;font-family:Concert One,cursive;">Settings</h2>
+            </div>
+            <div class="col">
+                <a href="mainpage.html">
+                    <button class="btn-child draw-border float-right">Switch to Child</button>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="row" style="margin-top:10px;height:70%;text-align:center;">
+            <div class="col">
+                <h1>Profile's Info</h1>
+                <h3>Name : <span id="profName"></span></h3>
+                <h3>Email : <span id="profEmail"></span></h3>
+
+            </div>
+            <div class="col">
+                
+                <button class="btn-child draw-border" 
+                        onclick="window.location.href='parent_setting.html#editChild'">Edit Child's Info</button><br>
+                <button class="btn-child draw-border logout-btn" id="logout-btn">Log Out</button>
+            </div>
+        </div>
+
+
+        <div id="editChild" class="overlay">
+            <div class="popup" style="text-align:center;">
+                Edit Child Info
+                <a class="close" href="#">X</a>
+                <div class="row">
+                    <div class="col">
+                        <div class="wrap-input100">
+                            <input id="childNameF" class="input100" type="text" name="childNameF" placeholder="First Name">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <div class="wrap-input100">
+                            <input id="childNameL" class="input100" type="text" name="childNameL" placeholder="Last Name">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <div class="wrap-input100">
+                            <input id="childAge" class="input100" type="text" name="childAge" placeholder="Age">
+                            <span class="focus-input100"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        
+
+                        <button class="btn-child draw-border" id="updateChild">Update</button>
+                    </div>
+                </div>
+                
+                
+
+            </div>
+        </div>
+    </div>
+
+    <div class="thebar" style="font-family: Concert One, cursive;">
+        <div class="thebar-show">
+            <a href="#" class="float-right" style="margin-right:10px;">Menu<a>
+                <br />
+        </div>
+        <div>
+            <nav class="roundnav">
+                <a href="parent_mychild.html">My Child</a>
+                <a href="parent_progress.html">Progress</a>
+                <a href="#" class="selected">Setting</a>
+            </nav>
+        </div>
+
+    </div>
+
+   
+
+    <!-- SCRIPT -->
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+    <script src="js/Firebase/initFirebase.js"></script>
+    <script type="text/javascript" src="js/cookie/cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+
+    <script>
+        $(function(){
+
+        var menu = $('.roundnav');
+        menu.on('click', 'a', function(){
+        var a = $(this);
+
+        a.siblings().removeClass('selected');
+        a.addClass('selected');
+        });
+        });
+    </script>
+</body>
+</html>

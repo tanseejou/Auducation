@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Parent</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Text+Me+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/parent.css" />
+</head>
+
+<style>
+      html,body{
+        height:100%;
+      }
+
+    .c{
+        border-radius:10px;
+        text-align:center;
+       
+        
+        box-shadow: 0px 8px 20px -10px rgba(13,28,39,0.6);
+    }
+
+    .card-title{
+        margin-top: 0px;
+        font-family:Concert One, cursive;
+        font-weight:bold;
+    }
+
+    .card-text{
+        
+        font-weight:bold;
+    }
+
+    
+    #progress-bar{
+        -webkit-transition: stroke-dasharray 0.5s ease-in;
+        -moz-transition: stroke-dasharray 0.5s ease-in;
+        transition: stroke-dasharray 0.5s ease-in;
+    }
+
+</style>
+
+<!-- JAVASCRIPT -->
+<script type="text/javascript">
+
+    var d = new Date(); 
+    var today = (d.getMonth()+1) + "/" + d.getDate() +"/" + d.getFullYear();
+    var docid;
+    var avatarsrc;
+    var totalToday = 0;
+    var goal = 20;
+
+    //Calculate total spent for today
+    function calProg(totalToday){
+        console.log("totalToday " + totalToday);
+        if(totalToday != 0){
+            var percentage = totalToday/goal;
+            var barvalue = 301.635 - Math.round(percentage * 301.635);
+            $("#progress-bar").css("stroke-dashoffset",barvalue);
+        }    
+    
+        
+        
+        document.getElementById("progress-min").innerHTML = totalToday;
+    }
+    
+    //Calculate get the list of todays activity and display it
+    function getToday(){
+        var htmlToday="<ul>";
+        var lesson;
+        var minute;
+        var count=0;
+         var dref = db.collection("child").doc(docid).collection("Play").where("Date","==",today);
+         dref.get().then(function(querySnapshot){
+            querySnapshot.forEach(function(doc) {
+            
+			    lesson = doc.data().Categories;
+                minute = doc.data().Duration;        
+                totalToday += minute;          
+                htmlToday += "<li><span style='font-size:110%'>"+ lesson + "</span><br/><span>" + minute + " mins</span></li>" ;
+                count++;
+	        });   
+            if(count == 0){
+            htmlToday = "No activity today";
+            }
+            else
+            {
+                htmlToday += "</ul>";
+            }
+            document.getElementById("activity-list").innerHTML = htmlToday;
+             calProg(totalToday);
+        });
+       
+        
+    }
+
+
+    function init(){
+        docid = getCookie("childdocid");    
+
+
+        document.getElementById("child-name").innerHTML = getCookie("childname");    
+        document.getElementById("child-age").innerHTML = getCookie("childage");
+        
+        var dGetA = db.collection("child").doc(docid);
+        dGetA.get().then(function(doc){
+            avatarsrc = doc.data().Avatar;    
+            console.log(avatarsrc);
+            document.getElementById("child-avatar").src = "images/avatar/" + avatarsrc; 
+            document.getElementById("child-points").innerHTML= doc.data().Point;
+        })
+
+        getToday();
+        
+    
+
+    }
+
+    window.onload = function(){
+        init();
+    }
+</script>
+
+
+<body style="font-family:'Text Me One', cursive; background-image: url('images/parent_background.jpg');background-size: cover; )">
+    <div class="container-fluid">
+        <div class="row headerrow" style="padding-top:10px">
+            <div class="col">
+                <h2 style="color: white;font-family:Concert One,cursive;">My Child</h2>
+            </div>
+            <div class="col">
+                <a href="mainpage.html">
+                    <button class="btn-child draw-border float-right">Switch to Child</button>
+                </a>
+            </div>
+
+        </div>
+        <div class="row" style="padding-top:10px;" >
+            <div class="col">
+                <div class="card c">
+
+                    <div class="card-body">
+                        <h5 class="card-title" id="child-name">Name</h5>
+                        <img src="" id="child-avatar" class="card-img-top" style="max-height:60%;max-width:60%;" alt="Child's avatar">
+                        <p class="card-text">
+                            Age: <span id="child-age"></span><br />
+                            Points: <span id="child-points"></span>
+
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card c">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Today Spent Time</h5>
+
+                        <!-- PROGRESS BAR CIRCLE -->
+                        <div style="display: block; width: 80%; height:80%; margin:auto;">
+                            <svg viewBox="-10 -10 120 120">
+                                <path d="M 50,50 m 0,-48 a 48,48 0 1 1 0,96 a 48,48 0 1 1 0,-96" stroke="#eee" stroke-width="10" fill-opacity="0"></path>
+                                <path id="progress-bar" d="M 50,50 m 0,-48 a 48,48 0 1 1 0,96 a 48,48 0 1 1 0,-96" stroke="#5d58ed" stroke-width="10" fill-opacity="0" style="stroke-dasharray: 301.635, 301.635; stroke-dashoffset: 301.635;"></path>
+                            </svg>
+                        </div>
+
+
+                        <!--<div class="progressbar-text" style="position: absolute; left: 50%; top: 50%; padding: 0px; margin: 0px; transform: translate(-50%, -50%); color: rgb(0, 0, 0); font-size: 1rem;">34</div>-->
+
+
+                        <p class="card-text"> <span id="progress-min"></span> /20 mins</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card c" style=" height:65%; max-height:65%;overflow:scroll; " >
+
+                    <div class="card-body" style="text-align:left;">
+                        <h5 class="card-title">Today Activity</h5>
+
+                        <div class="card-text">
+
+                            <span id="activity-list">
+                           
+                            </span>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="thebar" style="font-family: Concert One, cursive;">
+            <div class="thebar-show">
+                <a href="#" class="float-right" style="margin-right:10px;">
+                    Menu<a>
+                        <br />
+            </div>
+            <div>
+                <nav class="roundnav">
+                    <a href="#" class="selected">My Child</a>
+                    <a href="parent_progress.html">Progress</a>
+                    <a href="parent_setting.html">Setting</a>
+                </nav>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPT -->
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+    <script src="js/Firebase/initFirebase.js"></script>
+    <script type="text/javascript" src="js/cookie/cookie.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+
+    <script>
+        $(function(){
+
+        var menu = $('.roundnav');
+            menu.on('click', 'a', function(){
+                var a = $(this);
+
+                a.siblings().removeClass('selected');
+                a.addClass('selected');
+            });
+        });
+    </script>
+</body>
+</html>

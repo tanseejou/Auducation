@@ -1,0 +1,145 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+
+    <title>Puzzle 1</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Puzzle.css">
+    <link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Text+Me+One&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript"></script>
+   
+</head>
+<script>
+    function recordLessonP(){
+
+        var startTime = new Date();
+
+        document.cookie = "Categories=Puzzle";
+        document.cookie = "Lesson=Patches";
+        setStart();
+    }
+    function recordLessonO(){
+
+        var startTime = new Date();
+
+        document.cookie = "Categories=Puzzle";
+        document.cookie = "Lesson=Out Line";
+        setStart();
+    }
+    function recordLessonOd(){
+
+        var startTime = new Date();
+
+        document.cookie = "Categories=Puzzle";
+        document.cookie = "Lesson=Odd One Out";
+        setStart();
+    }
+
+    function init(){
+        document.getElementById("Patches").addEventListener('click',recordLessonP);
+        document.getElementById("OL").addEventListener('click',recordLessonO);
+        document.getElementById("OD").addEventListener('click',recordLessonOd);
+    }
+
+    window.onload = function(){
+        initialize();
+        init();
+    }
+</script>
+<body>
+    <div class="container-fluid imgBackground">
+        <div class="row align-items-end">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10"></div>
+            <div class="col d-flex justify-content-end">
+                <button type="button" class="congBtn p-2" onclick="window.location.href='#.html'">
+                    <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+
+        <div row id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col align-self-center choice">
+                            <div class="wrapper"><img src="img/patches2.png" alt="patchesChoiceImg" class="lessonImg center"></div>
+                            <p class="exetitle">PATCHES</p>
+                            <div>
+                                <button type="button" id="Patches" class=" hello start_btn center"
+                                        onclick="window.location.href='Patches1.html'">
+                                    START
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col align-self-center choice">
+                            <div class="wrapper"><img src="img/outline3.png" alt="outlineChoiceImg" class="lessonImg center"></div>
+                            <p class="exetitle">OUTLINE</p>
+                            <div>
+                                <button type="button" id="OL" class="hello start_btn center"
+                                        onclick="window.location.href='Outline1.html'">
+                                    START
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col align-self-center choice">
+                            <div class="wrapper"><img src="img/oddOneOut.png" alt="oddOneOutChoiceImg" class="lessonImg center"></div>
+                            <p class="exetitle">ODD ONE OUT</p>
+                            <div>
+                                <button type="button" id="OD" class="hello start_btn center"
+                                        onclick="window.location.href='OddOneOut1.html'">
+                                    START
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+    <script src="js/Firebase/initFirebase.js"></script>
+    <script type="text/javascript" src="js/cookie/cookie.js"></script>
+    <script type="text/javascript" src="js/playCalc.js"></script>
+</body>
+
+</html>

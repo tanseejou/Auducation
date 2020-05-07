@@ -1,0 +1,37 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.auducation.ad"
+    },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "com.auducation.ad"
+    },
+    "cordova-plugin-browsersync": {
+      "PACKAGE_NAME": "com.auducation.ad"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.auducation.ad"
+    },
+    "cordova-plugin-buildinfo": {
+      "PACKAGE_NAME": "com.auducation.ad"
+    },
+    "cordova-universal-links-plugin": {
+      "PACKAGE_NAME": "com.auducation.ad"
+    },
+    "cordova-plugin-browsertab": {
+      "PACKAGE_NAME": "com.auducation.ad"
+    }
+  },
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.auducation.ad"
+    }
+  }
+}

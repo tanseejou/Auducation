@@ -1,0 +1,121 @@
+.container-fluid{
+    height:100%;
+}
+
+html, body{
+    height:100%;
+}
+body{
+    background-size: cover;
+}
+.imgBackground{
+    background-image: url('img/blue5.jpg');
+    height:100%;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+}
+.imgBackground{
+    background-image: url('img/orange2.jpg');
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+ /*   height: 480px;*/
+}
+
+.title{
+    font-family:Concert One, cursive;
+    color: #113f67;
+    font-weight: bold;
+    font-size: 100px;
+    text-shadow: 3px 3px #cccccc;
+    margin:5px;
+}
+
+.start{
+    font-family:Concert One, cursive;
+    font-weight: lighter;
+    color: #e26241;
+    font-size: 30px;
+    margin:5px;
+}
+
+.exetitle{
+    font-family:Concert One, cursive;
+    font-weight: lighter;
+    color: #979797;
+    text-align: center;
+    font-size: 20px;
+}
+
+.wrapper{
+    padding:10px;
+    margin-top:15px;
+    align-items: center;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.lessonImg{
+    width:150px;
+    height:150px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 2px solid #979797;
+    align-items: center;
+}
+
+.center{
+    display:block;
+    margin-top: auto;
+    margin-left:auto;
+    margin-right:auto;
+}
+.choice{
+    background-color: rgba(255,255,255,0.6);
+    min-height:100%;
+    margin-left:33%;
+    margin-right:33%;
+    bottom:0;
+}
+
+.responsive{
+    width:100%;
+    height:auto;
+}
+
+.congBtn{
+    border:none;
+    color:#eeeeee;
+    border-radius: 10%;
+    background-color: transparent;
+}
+
+/*  start button*/
+#hello:hover {
+    letter-spacing: 0.8em;
+    background-color: #f67280;
+    color: white;
+  }
+  
+  #hello {
+    color: #f67280;
+  }
+.start_btn{
+    align-items: center;
+    height: 2.5em;
+    width: 70%;
+    padding: 1.5em auto;
+    text-align: center;
+    background-color: transparent;
+    border: 2px solid #979797;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    font-family:Concert One, cursive;
+    font-weight: lighter;
+    transition: all 0.2s cubic-bezier(.4,0,.2,1);
+    margin-top:30px;
+    margin-bottom:30px;
+  }
+

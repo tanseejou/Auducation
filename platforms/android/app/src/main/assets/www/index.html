@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Text+Me+One&display=swap" rel="stylesheet">
+
+
+    <title>Login AuDucation</title>
+</head>
+
+    <style>
+
+        .text-center{
+            font-family:'Text Me One';
+        }
+
+        .googleIcon{
+            position:absolute;
+            bottom:0px;
+            left:50%;
+            margin-left:-25px;
+        }
+
+        .googleLogin{
+            font-weight:bold;
+           position:absolute;
+           bottom:55px;
+           left:50%;
+           margin-left:-40px;
+        }
+
+        .logo{
+           position:absolute;
+           height:50%;
+           top:20%;
+           left:37.5%;
+        }
+    </style>
+
+    <body>
+
+        <div class="container-login100" style="font-family:Concert One,cursive;">
+            <div class="wrap-login100">
+                <div class="row">
+                    <div class="col" style="text-align:center;">
+                        <span>
+                            <img class="logo" src="img/logo.png" alt="auDucationIcon">
+                        </span>
+                        <h1>
+                            AuDucation
+                        </h1>
+                        <div class="text-center" style="padding-top:0px; padding-bottom:0px;">
+                            <span class="googleLogin">
+                                Login with
+                            </span>
+                        </div>
+
+                        <div class="flex-c p-b-112">
+                            <!--<a href="#" class="login100-social-item">
+            <i class="fa fa-facebook-f"></i>
+        </a>-->
+
+                            <button id="login-google" class="login100-social-item googleIcon">
+                                <img src="images/icons/icon-google.png" alt="GOOGLE">
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="col">
+                        <div class="wrap-input100">
+                            <input id="email" class="input100" type="text" name="email" placeholder="email">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100">
+                            <input id="password" class="input100" type="password" name="password" placeholder="password">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="container-login100-form-btn">
+                            <button id="login-button" class="login100-form-btn">
+                                Login
+                            </button>
+                        </div>
+
+                        <div class="text-center">
+                            <a href="signup.html" class="txt2 hov1" >
+                                Sign Up
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+
+                
+
+                
+
+                         
+                
+
+
+
+            </div>
+            <div id="dropDownSelect1"></div>
+
+            <!--Firebase-->
+            <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+            <script src="js/Firebase/initFirebase.js"></script>
+            <!--  -->
+            <script type="text/javascript" src="cordova.js"></script>
+            <script type="text/javascript" src="js/index.js"></script>
+            <script type="text/javascript" src="js/jquery.min.js"></script>
+            <!--===============================================================================================-->
+            <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+            <!--===============================================================================================-->
+            <script src="vendor/animsition/js/animsition.min.js"></script>
+            <!--===============================================================================================-->
+            <script src="vendor/bootstrap/js/popper.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+            <!--===============================================================================================-->
+            <script src="vendor/select2/select2.min.js"></script>
+            <!--===============================================================================================-->
+            <script src="vendor/daterangepicker/moment.min.js"></script>
+            <script src="vendor/daterangepicker/daterangepicker.js"></script>
+            <!--===============================================================================================-->
+            <script src="vendor/countdowntime/countdowntime.js"></script>
+
+
+
+</body>
+</html>
